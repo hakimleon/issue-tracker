@@ -1,7 +1,14 @@
+'use client'
+import { cn } from "@/lib/utils";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import React from "react";
 
 export const Navbar = () => {
+
+   const currentPath =  usePathname()
+
+   console.log('currentPath', currentPath)
   return (
     <nav className="border-b mb-4">
       <div className="container mx-aut flex space-x-6 p-4 items-center">
@@ -23,10 +30,10 @@ export const Navbar = () => {
         </Link>
         <ul className="flex space-x-6">
           <li>
-            <Link href="/" className="text-muted-foreground hover:text-neutral-300 transition-colors duration-300">Dashboard</Link>
+            <Link href="/" className={cn(' hover:text-white  transition-colors duration-300', currentPath === '/' ? 'text-neutral-300 font-semibold' : 'text-muted-foreground' )}>Dashboard</Link>
           </li>
           <li>
-            <Link href="/issues" className="text-muted-foreground hover:text-neutral-300 transition-colors duration-300">Issues</Link>
+            <Link href="/issues" className={cn('  transition-colors duration-300', currentPath === '/issues' ? 'text-neutral-300 font-semibold' : 'text-muted-foreground' )}>Issues</Link>
           </li>
         </ul>
       </div>
